@@ -1,4 +1,4 @@
-<title>Security-Hardened Decentralized Voting System<title>
+<h1>Security-Hardened Decentralized Voting System</h1>
 
 A production-ready decentralized voting platform built with Solidity, Hardhat, React, Vite, and Ethers.js, providing transparent, secure, and tamper-proof elections powered by blockchain technology.
 
@@ -12,7 +12,7 @@ Limited auditability
 
 This project addresses these challenges using blockchain technology.
 
-Every vote is:
+Every vote is:<br>
 ✅ Immutable<br>
 ✅ Cryptographically secured<br>
 ✅ Publicly verifiable<br>
@@ -23,13 +23,13 @@ The application combines an immutable Solidity smart contract with a modern Reac
 
 🛠️ Tech Stack & Requirements
 
-💻 System Prerequisites
+💻 System Prerequisites<br>
 Ensure the following base software environments are installed globally on your machine before initializing the workspace:
 **Node.js (v18.0.0 or higher):** Core runtime environment. [Download Node.js](https://nodejs.org/)
 **npm:** Node Package Manager (bundled directly with Node.js)
 **MetaMask Browser Extension:** Crypto wallet extension used to sign transactions and route network calls. [Get MetaMask](https://metamask.io/)
 
-📦 Project Dependencies (`requirements.txt`)
+📦 Project Dependencies (`requirements.txt`)<br>
 The application infrastructure relies on the following engineering frameworks:
 **Hardhat:** EVM development environment used to compile smart contracts, run test hooks, and deploy local blockchain nodes.
 **Ethers.js (v6):** Web3 provider library bridging the frontend UI with browser wallets and ledger RPC nodes.
@@ -38,6 +38,7 @@ The application infrastructure relies on the following engineering frameworks:
 
 
 Architecture
+
                 User
                  │
                  ▼
@@ -84,9 +85,9 @@ http://localhost:5173
 🦊 MetaMask Network
 Setting	            Value
 Network Name	    Hardhat Localhost
-RPC URL	            http://127.0.0.1:8545
-Chain ID	    31337
-Currency Symbol	    ETH
+RPC URL	          http://127.0.0.1:8545
+Chain ID	        31337
+Currency Symbol	  ETH
 
 Import one of the test accounts displayed in the Hardhat terminal.
 
@@ -96,12 +97,14 @@ npx hardhat test
 
 When restarting the Hardhat blockchain, MetaMask may show an Internal JSON-RPC Error.
 
-Go to: MetaMask → Settings → Advanced → Clear activity tab data
+Go to: <br>
+MetaMask → Settings → Advanced → Clear activity tab data
 
-🔮 Future Improvements
-Sepolia testnet deployment
-Multiple elections
-Zero-knowledge voting
-Election analytics
-IPFS candidate data
-Improved smart contract testing
+🔮 Future Improvements<br>
+
+Sepolia testnet deployment<br>
+Multiple elections<br>
+Zero-knowledge voting<br>
+Election analytics<br>
+IPFS candidate data<br>
+Improved smart contract testing<br>
