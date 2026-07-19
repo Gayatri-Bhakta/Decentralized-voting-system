@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --neon-cyan: #00F5FF;
+  --electric-purple: #7B61FF;
+  --accent-pink: #FF4D9D;
+  --bg-dark: #0A0F1F;
+  --card-dark: #111827;
+  --text-dark: #ffffff;
+  --border-dark: rgba(255, 255, 255, 0.05);
+  
+  --bg-light: #f8fafc;
+  --card-light: #ffffff;
+  --text-light: #0f172a;
+  --border-light: rgba(0, 0, 0, 0.08);
+
+  --font-heading: 'Orbitron', sans-serif;
+  --font-body: 'Poppins', sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Premium Web3 Glassmorphism Surfaces */
+.glass-surface {
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Advanced 3D Hover Lift Matrix */
+.cyber-3d-lift {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+.cyber-3d-lift:hover {
+  transform: translateY(-6px) rotateX(1deg) rotateY(1deg);
+  box-shadow: 0 15px 35px rgba(0, 245, 255, 0.15);
+}
+
+/* Neon Glow Shimmer Buttons */
+.btn-neon-glow {
+  position: relative;
+  overflow: hidden;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+.btn-neon-glow:hover {
+  box-shadow: 0 0 20px var(--neon-cyan);
+  transform: scale(1.02);
+}
+
+/* Progress Shimmer Loading Effects */
+@keyframes shimmer-move {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.progress-shimmer-bar {
+  background: linear-gradient(90deg, var(--electric-purple), var(--neon-cyan), var(--accent-pink));
+  background-size: 200% 200%;
+  animation: shimmer-move 2.5s linear infinite;
+}
+
+/* Toast Inbound Transitions */
+@keyframes slide-toast-in {
+  from { transform: translateX(140%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+.toast-slide-entry {
+  animation: slide-toast-in 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* Pulsing Online Heartbeat Nodes */
+@keyframes status-heartbeat {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.2); opacity: 1; filter: drop-shadow(0 0 8px #10b981); }
+}
+.heartbeat-dot {
+  animation: status-heartbeat 2s infinite ease-in-out;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--electric-purple);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--neon-cyan);
+}

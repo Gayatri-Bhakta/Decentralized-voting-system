@@ -1,0 +1,49 @@
+{
+  "_format": "hh3-sol-build-info-1",
+  "id": "solc-0_8_28-50ec6b0c54a2cc0c9092b485750a7e3059f1b8d6",
+  "solcVersion": "0.8.28",
+  "solcLongVersion": "0.8.28+commit.7893614a",
+  "compilerType": "solc",
+  "toolVersions": {
+    "hardhat": "3.9.0"
+  },
+  "userSourceNameMap": {
+    "contracts/Voting.sol": "project/contracts/Voting.sol"
+  },
+  "input": {
+    "language": "Solidity",
+    "settings": {
+      "evmVersion": "cancun",
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "outputSelection": {
+        "*": {
+          "": [
+            "ast"
+          ],
+          "*": [
+            "abi",
+            "evm.bytecode.linkReferences",
+            "evm.bytecode.object",
+            "evm.bytecode.opcodes",
+            "evm.bytecode.sourceMap",
+            "evm.deployedBytecode.immutableReferences",
+            "evm.deployedBytecode.linkReferences",
+            "evm.deployedBytecode.object",
+            "evm.deployedBytecode.opcodes",
+            "evm.deployedBytecode.sourceMap",
+            "evm.methodIdentifiers"
+          ]
+        }
+      },
+      "remappings": []
+    },
+    "sources": {
+      "project/contracts/Voting.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.20;\r\n\r\ncontract DecentralizedVoting {\r\n    struct Candidate {\r\n        uint256 id;\r\n        string name;\r\n        uint256 voteCount;\r\n    }\r\n\r\n    address public electionOfficial;\r\n    uint256 public votingEnd;\r\n    uint256 public candidateCount;\r\n\r\n    mapping(uint256 => Candidate) public candidates;\r\n    mapping(address => bool) public isWhitelisted;\r\n    mapping(address => bool) public hasVoted;\r\n\r\n    // Events allow our React frontend to update the dashboard in REAL TIME\r\n    event VoteCast(uint256 indexed candidateId, uint256 newVoteCount);\r\n    event VoterWhitelisted(address voterAddress);\r\n\r\n    modifier onlyOfficial() {\r\n        require(msg.sender == electionOfficial, \"Only the election official can perform this action.\");\r\n        _;\r\n    }\r\n\r\n    modifier votingActive() {\r\n        require(block.timestamp < votingEnd, \"Voting window has ended.\");\r\n        _;\r\n    }\r\n\r\n    constructor(string[] memory _candidateNames, uint256 _durationInMinutes) {\r\n        electionOfficial = msg.sender;\r\n        votingEnd = block.timestamp + (_durationInMinutes * 1 minutes);\r\n\r\n        for (uint256 i = 0; i < _candidateNames.length; i++) {\r\n            candidateCount++;\r\n            candidates[candidateCount] = Candidate(candidateCount, _candidateNames[i], 0);\r\n        }\r\n    }\r\n\r\n    // Anti-Corruption: Only authorized, identity-verified addresses are added to the ballot system\r\n    function whitelistVoter(address _voter) external onlyOfficial {\r\n        require(!isWhitelisted[_voter], \"Voter is already whitelisted.\");\r\n        isWhitelisted[_voter] = true;\r\n        emit VoterWhitelisted(_voter);\r\n    }\r\n\r\n    // Tamper-Proof: Enforces whitelisting, double-voting prevention, and strict deadlines\r\n    function castVote(uint256 _candidateId) external votingActive {\r\n        require(isWhitelisted[msg.sender], \"You are not authorized/whitelisted to vote.\");\r\n        require(!hasVoted[msg.sender], \"Identity verification failed: You have already voted.\");\r\n        require(_candidateId > 0 && _candidateId <= candidateCount, \"Invalid candidate chosen.\");\r\n\r\n        hasVoted[msg.sender] = true;\r\n        candidates[_candidateId].voteCount++;\r\n\r\n        // Emitting the event triggers the real-time updates on our React UI instantly\r\n        emit VoteCast(_candidateId, candidates[_candidateId].voteCount);\r\n    }\r\n\r\n    function getCandidate(uint256 _candidateId) external view returns (Candidate memory) {\r\n        return candidates[_candidateId];\r\n    }\r\n}"
+      }
+    }
+  }
+}
